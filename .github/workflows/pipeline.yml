@@ -47,7 +47,6 @@ jobs:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: python tourism-purchase-predictor/model_building/train.py
 
-
   deploy-hosting:
     runs-on: ubuntu-latest
     needs: [model-traning,data-prep,register-dataset]
