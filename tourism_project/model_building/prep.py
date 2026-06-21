@@ -24,7 +24,7 @@ df['Gender'] = df['Gender'].str.replace(' ', '').str.capitalize()
 
 #Creating categories from Age and Monthly Income
 df['age_group'] = pd.cut(
-    x=df['age'],
+    x=df['Age'],
     bins=[18, 30, 40, 50, 61],
     labels=["18-30", "31-40", "41-50", "51-60", "60+"],
 )
