@@ -3,23 +3,18 @@ import pandas as pd
 from huggingface_hub import hf_hub_download
 import joblib
 
-saved_model_path = "tourism_project/deployment_files/best_machine_tourism_predit_model.joblib"
-joblib.dump(best_model, saved_model_path)
-
-print(f"Model saved successfully at {saved_model_path}")
-
 # Download and load the model
-model_path = hf_hub_download(repo_id="kottanagu/smart-tourism-customer-prediction-platform", filename="best_machine_tourism_predit_model.joblib")
+model_path = hf_hub_download(repo_id="kottanagu/smart-tourism-customer-prediction-platform", filename="best_machine_tourism_predict_model.joblib")
 model = joblib.load(model_path)
 
-# Streamlit UI for Tourism Package Purchase Prediction
+# Streamlit UI for Machine Failure Prediction
 st.title("Wellness Tourism Package Purchase Prediction Using an End-to-End MLOps Pipeline")
 st.write("""
 This application uses machine learning to predict the likelihood of a customer purchasing the Wellness Tourism Package.
 """)
 
 # User input
-Age = st.number_input("Age", min_value=25, step=1, value=1)
+Age = st.number_input("Age", min_value=18, step=1, value=1)
 Type_of_Contact = st.selectbox("Type of Contact", ["Company Invited", "Self Enquiry"])
 City_Tier = st.selectbox("City Tier", ["1", "2", "3"])
 Duration_of_Pitch = st.number_input("Duration of Pitch", min_value=20, step=1, value=1)
