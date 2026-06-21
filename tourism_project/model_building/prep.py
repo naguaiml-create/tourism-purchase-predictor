@@ -22,12 +22,6 @@ df.drop(columns=['CustomerID'], inplace=True)
 #Corrected Gender values by merging "Fe Male" into "Female".
 df['Gender'] = df['Gender'].str.replace(' ', '').str.capitalize()
 
-#Creating categories from Age and Monthly Income
-df['age_group'] = pd.cut(
-    x=df['Age'],
-    bins=[18, 30, 40, 50, 61],
-    labels=["18-30", "31-40", "41-50", "51-60", "60+"],
-)
 
 # Standardize marital status values by replacing 'Unmarried' with 'Single'
 df['MaritalStatus'] = df['MaritalStatus'].replace('Unmarried', 'Single')
