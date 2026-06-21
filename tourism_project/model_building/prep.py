@@ -26,7 +26,7 @@ df['Gender'] = df['Gender'].str.replace(' ', '').str.capitalize()
 df['age_group'] = pd.cut(
     x=df['Age'],
     bins=[18, 30, 40, 50, 61],
-    labels=["18-30", "31-40", "41-50", "51-60", "60+"],
+    labels=["18-30", "31-40", "41-50", "51-61"],
 )
 
 # Standardize marital status values by replacing 'Unmarried' with 'Single'
