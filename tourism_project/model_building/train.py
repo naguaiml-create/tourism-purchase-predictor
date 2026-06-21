@@ -102,7 +102,7 @@ print(classification_report(ytest, y_pred_test))
 joblib.dump(best_model, "best_tourism_predict_model_v1.joblib")
 
 # Upload to Hugging Face
-repo_id="kottanagu/smart-tourism-customer-prediction-platform",  
+repo_id="kottanagu/smart-tourism-customer-prediction-platform"
 repo_type = "model"
 
 api = HfApi(token=os.getenv("HF_TOKEN"))
