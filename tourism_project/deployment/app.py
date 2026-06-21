@@ -48,9 +48,9 @@ input_data = pd.DataFrame([{
     'Preferred_Property_Star': Preferred_Property_Star,
     'Marital_Status': Marital_Status,
     'Number_Of_Trips': Number_Of_Trips,
-    'Passport': Passport,
+    'Passport': 1 if Passport == "Yes" else 0,
     'Pitch_Satisfaction_Score': Pitch_Satisfaction_Score,
-    'Own_Car': Own_Car,
+    "OwnCar": 1 if OwnCar == "Yes" else 0,
     'Number_Of_Children_Visiting': Number_Of_Children_Visiting,
     'Designation': Designation,
     'Monthly_Income': Monthly_Income
