@@ -37,28 +37,40 @@ Monthly_Income = st.number_input("Monthly Income", min_value=10000, step=100, va
 # Assemble input into DataFrame
 input_data = pd.DataFrame([{
     'Age': Age,
-    'Type_of_Contact': Type_of_Contact,
-    'City_Tier': City_Tier,
-    'Duration_of_Pitch': Duration_of_Pitch,
+    'TypeofContact': Type_of_Contact,
+    'CityTier': int(City_Tier),
+    'DurationOfPitch': Duration_of_Pitch,
     'Occupation': Occupation,
     'Gender': Gender,
-    'Number_of_Persons_Visiting': Number_of_Persons_Visiting,
-    'Number_of_Followups': Number_of_Followups,
-    'Product_Pitched': Product_Pitched,
-    'Preferred_Property_Star': Preferred_Property_Star,
-    'Marital_Status': Marital_Status,
-    'Number_Of_Trips': Number_Of_Trips,
+    'NumberOfPersonVisiting': Number_of_Persons_Visiting,
+    'NumberOfFollowups': Number_of_Followups,
+    'ProductPitched': Product_Pitched,
+    'PreferredPropertyStar': int(Preferred_Property_Star),
+    'MaritalStatus': Marital_Status,
+    'NumberOfTrips': Number_Of_Trips,
     'Passport': 1 if Passport == "Yes" else 0,
-    'Pitch_Satisfaction_Score': Pitch_Satisfaction_Score,
-    "OwnCar": 1 if OwnCar == "Yes" else 0,
-    'Number_Of_Children_Visiting': Number_Of_Children_Visiting,
+    'PitchSatisfactionScore': int(Pitch_Satisfaction_Score),
+    'OwnCar': 1 if Own_Car == "Yes" else 0,
+    'NumberOfChildrenVisiting': Number_Of_Children_Visiting,
     'Designation': Designation,
-    'Monthly_Income': Monthly_Income
+    'MonthlyIncome': Monthly_Income
 }])
 
-
 if st.button("Predict Purchase"):
-    prediction = model.predict(input_data)[0]
-    result = "Tourism Package Purchase Prediction" if prediction == 1 else "No Failure"
-    st.subheader("Prediction Result:")
-    st.success(f"The model predicts: **{result}**")
+    try:
+        prediction = model.predict(input_data)[0]
+        probability = model.predict_proba(input_data)[0][1] * 100
+
+        if prediction == 1:
+            st.success(
+                f" Great News! This customer is likely to purchase the Wellness Tourism Package"
+                f"(Probability: {probability:.2f}%)."
+            )
+        else:
+            st.error(
+                f"Attention: This customer is unlikely to purchase the Wellness Tourism Package at this time. "
+                f"(Probability: {probability:.2f}%)."
+            )
+
+    except Exception as e:
+        st.error(f"Error: {e}")
